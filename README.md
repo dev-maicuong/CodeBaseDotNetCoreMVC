@@ -6,15 +6,16 @@
 ## Teachnologies
 - .Net core MVC 3.1 
 - Entity Framework core
+- SQL Server
 
 ## Install Packages
 - ProjectName.Data:
-dotnet add package System.Data.SqlClient
-dotnet add package Microsoft.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Microsoft.Extensions.DependencyInjection
-Microsoft.EntityFrameworkCore.Tools
+1/ dotnet add package System.Data.SqlClient
+2/ dotnet add package Microsoft.EntityFrameworkCore
+3/ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+4/ dotnet add package Microsoft.EntityFrameworkCore.Design
+5/ dotnet add package Microsoft.Extensions.DependencyInjection
+6/ Microsoft.EntityFrameworkCore.Tools
 
 ## Youtube tutorial
 ## How to configura and run

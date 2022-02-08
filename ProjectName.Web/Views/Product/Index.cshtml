@@ -1,0 +1,33 @@
+﻿@model List<ProjectName.Common.Model.ProductModel>;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int count = 0;
+}
+
+<h1>Product</h1>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th scope="col">Stt</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col">Tên người dùng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <th>@count</th>
+                    <td>@item.productName</td>
+                    <td>@item.userName</td>
+                </tr>
+                count++;
+            }
+
+        }
+    </tbody>
+</table>
+

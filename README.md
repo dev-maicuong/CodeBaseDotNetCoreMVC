@@ -9,13 +9,14 @@
 - SQL Server
 
 ## Install Packages
-- ProjectName.Data:
-1/ dotnet add package System.Data.SqlClient
-2/ dotnet add package Microsoft.EntityFrameworkCore
-3/ dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-4/ dotnet add package Microsoft.EntityFrameworkCore.Design
-5/ dotnet add package Microsoft.Extensions.DependencyInjection
-6/ Microsoft.EntityFrameworkCore.Tools
+
+### ProjectName.Data:
+- System.Data.SqlClient
+- Microsoft.EntityFrameworkCore
+- Microsoft.EntityFrameworkCore.SqlServer
+- Microsoft.EntityFrameworkCore.Design
+- Microsoft.Extensions.DependencyInjection
+- Microsoft.EntityFrameworkCore.Tools
 
 ## Youtube tutorial
 ## How to configura and run

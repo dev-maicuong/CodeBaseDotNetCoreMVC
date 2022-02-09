@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ProjectName.Common.Model
+namespace ProjectName.Model.Dtos
 {
-    public class ProductModel
+    public class ProductDto
     {
         public int productId { set; get; }
         public string productName { set; get; }

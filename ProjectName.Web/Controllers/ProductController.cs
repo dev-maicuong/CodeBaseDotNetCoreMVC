@@ -22,14 +22,5 @@ namespace ProjectName.Web.Controllers
 
             return View(product);
         }
-        public IActionResult Create()
-        {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Create(ProductModel productModel)
-        {
-            return View();
-        }
     }
 }

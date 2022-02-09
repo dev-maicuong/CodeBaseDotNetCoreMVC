@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ProjectName.Common.Model;
+using ProjectName.Model.Dtos;
 using ProjectName.Data.EF;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,9 +17,9 @@ namespace ProjectName.Service.Imp
             _db = db;
         }
 
-        public async Task<List<ProductModel>> GetAllAsync()
+        public async Task<List<ProductDto>> GetAllAsync()
         {
-            var list = await _db.Products.Select(x => new ProductModel
+            var list = await _db.Products.Select(x => new ProductDto
             {
                 productName = x.productName,
                 userName = $"{x.user.firstName} {x.user.lastName}"

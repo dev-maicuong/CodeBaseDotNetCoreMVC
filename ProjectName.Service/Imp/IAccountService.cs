@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ProjectName.Model.Dtos;
 using System.Threading.Tasks;
 
 namespace ProjectName.Service.Imp
 {
-    public interface IProductService
+    public interface IAccountService
     {
-        public Task<List<ProductDto>> GetAllAsync();
+        public Task<bool> SignIn(string email, string pass);
     }
 }

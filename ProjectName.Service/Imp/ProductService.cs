@@ -9,6 +9,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProjectName.Service.Imp
 {
+    public interface IProductService
+    {
+        public Task<List<ProductDto>> GetAllAsync();
+    }
     public class ProductService: IProductService
     {
         private readonly ProjectNameDbContext _db;

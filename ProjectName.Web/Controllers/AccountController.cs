@@ -14,6 +14,7 @@ namespace ProjectName.Web.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(RequestLoginModel requestLoginModel)
         {
             if(!ModelState.IsValid)
@@ -21,18 +22,20 @@ namespace ProjectName.Web.Controllers
                 ModelState.AddModelError("","Vui lòng kiểm tra lỗi và đăng nhập lại!");
                 return View(requestLoginModel);
             }
-            requestLoginModel.email = "111";
-            requestLoginModel.pass = "111";
             return View(requestLoginModel);
         }
-        //public IActionResult Register()
-        //{
-        //    return View();
-        //}
-        //[HttpPost]
-        //public IActionResult Register()
-        //{
-        //    return View();
-        //}
+        public IActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Register(RequestRegister requestRegister)
+        {
+            if(!ModelState.IsValid)
+            {
+
+            }
+            return View();
+        }
     }
 }

@@ -1,8 +1,33 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<style>
+    .center{
+        margin:auto;
+        width:50%;
+    }
+</style>
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Danh sách các chức năng dựng sẵn</p>
+    <div class="list-group center">
+        <p class="list-group-item list-group-item-action active">
+            Account controller
+        </p>
+        <a href="@Url.Action("Login","Account")" class="list-group-item list-group-item-action">Login</a>
+        <a href="@Url.Action("Register","Account")" class="list-group-item list-group-item-action">Register</a>
+    </div>
+    <div class="list-group center mt-2">
+        <p class="list-group-item list-group-item-action active">
+            File controller
+        </p>
+        <a href="@Url.Action("ChoseFile","File")" class="list-group-item list-group-item-action">Chose File</a>
+        <a href="@Url.Action("GetFile","File", new { fileName = "avata-CV.jpg" })" class="list-group-item list-group-item-action">Get File</a>
+    </div>
+    <div class="list-group center mt-2">
+        <p class="list-group-item list-group-item-action active">
+            Product controller
+        </p>
+        <a href="@Url.Action("Index","Product")" class="list-group-item list-group-item-action">Index</a>
+    </div>
 </div>

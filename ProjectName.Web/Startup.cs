@@ -34,6 +34,7 @@ namespace ProjectName.Web
             });
 
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IFileService, FileService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +59,16 @@ namespace ProjectName.Web
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "ManageOwnerUser",
+                    pattern: "ManageOwner/{controller}/{action=Index}/{id?}",
+                    areaName: "ManageOwner");
+
+                endpoints.MapAreaControllerRoute(
+                    name: "ManageMarketingHome",
+                    pattern: "ManageMarketing/{controller}/{action=Index}/{id?}",
+                    areaName: "ManageMarketing");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -7,6 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProjectName.Service.Imp
 {
+    public interface IAccountService
+    {
+        public Task<bool> SignIn(string email, string pass);
+    }
     public class AccountService : IAccountService
     {
         private readonly ProjectNameDbContext _db;

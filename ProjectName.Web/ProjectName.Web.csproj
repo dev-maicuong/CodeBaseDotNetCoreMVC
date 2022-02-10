@@ -12,4 +12,12 @@
     <ProjectReference Include="..\ProjectName.Service\ProjectName.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\ManageMarketing\Data\" />
+    <Folder Include="Areas\ManageMarketing\Models\" />
+    <Folder Include="Areas\ManageOwner\Data\" />
+    <Folder Include="Areas\ManageOwner\Models\" />
+    <Folder Include="wwwroot\uploads\" />
+  </ItemGroup>
+
 </Project>

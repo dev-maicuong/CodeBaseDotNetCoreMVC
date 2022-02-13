@@ -18,7 +18,7 @@ namespace ProjectName.Web.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var product = await _productService.GetAllAsync();
+            var product = await _productService.TestRUOWGetAllAsync();
 
             return View(product);
         }

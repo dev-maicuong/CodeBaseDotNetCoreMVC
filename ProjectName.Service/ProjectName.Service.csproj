@@ -10,4 +10,8 @@
     <ProjectReference Include="..\ProjectName.Model\ProjectName.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Test\RepositoryAndUnitOfWork\" />
+  </ItemGroup>
+
 </Project>

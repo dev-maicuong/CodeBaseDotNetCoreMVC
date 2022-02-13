@@ -11,17 +11,26 @@ using System.Threading.Tasks;
 using ProjectName.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using ProjectName.Service.Imp;
+using Microsoft.Extensions.Logging;
+using ProjectName.Data.Infrastructure;
 
 namespace ProjectName.Web
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
+        public static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddFilter(DbLoggerCategory.Query.Name, LogLevel.Information);
+            //builder.AddFilter(DbLoggerCategory.Database.Name, LogLevel.Information);
+            builder.AddConsole();
+        });
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -30,11 +39,15 @@ namespace ProjectName.Web
 
             services.AddDbContext<ProjectNameDbContext>(options => {
                 string connectstring = Configuration.GetConnectionString("ProjectNameContext");
+                // hien thi cau truy van ra cua so console
+                options.UseLoggerFactory(loggerFactory);
                 options.UseSqlServer(connectstring);
             });
 
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IFileService, FileService>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

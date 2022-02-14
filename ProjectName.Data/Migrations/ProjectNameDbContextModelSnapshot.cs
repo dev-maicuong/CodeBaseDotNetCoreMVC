@@ -36,7 +36,20 @@ namespace ProjectName.Data.Migrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Product");
+
+                    b.HasData(
+                        new
+                        {
+                            productId = 1,
+                            productName = "Sản phẩm 1"
+                        },
+                        new
+                        {
+                            productId = 2,
+                            productName = "Sản phẩm 2",
+                            userId = 1
+                        });
                 });
 
             modelBuilder.Entity("ProjectName.Data.Entities.Role", b =>
@@ -55,6 +68,20 @@ namespace ProjectName.Data.Migrations
                     b.HasKey("roleId");
 
                     b.ToTable("Role");
+
+                    b.HasData(
+                        new
+                        {
+                            roleId = 1,
+                            description = "Mô tả vai trò 1",
+                            roleName = "Vai trò 1"
+                        },
+                        new
+                        {
+                            roleId = 2,
+                            description = "Mô tả vai trò 2",
+                            roleName = "Vai trò 2"
+                        });
                 });
 
             modelBuilder.Entity("ProjectName.Data.Entities.User", b =>
@@ -79,6 +106,16 @@ namespace ProjectName.Data.Migrations
                     b.HasKey("userId");
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            userId = 1,
+                            email = "hoangmaicuong99@gmail.com",
+                            firstName = "Cuong",
+                            lastName = "Hoang",
+                            pass = "123"
+                        });
                 });
 
             modelBuilder.Entity("ProjectName.Data.Entities.UserDetail", b =>
@@ -95,6 +132,14 @@ namespace ProjectName.Data.Migrations
                     b.HasKey("userDetailId");
 
                     b.ToTable("UserDetail");
+
+                    b.HasData(
+                        new
+                        {
+                            userDetailId = 1,
+                            createDay = new DateTime(2022, 5, 8, 14, 40, 52, 531, DateTimeKind.Unspecified),
+                            updateDay = new DateTime(2022, 5, 8, 14, 40, 52, 531, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("ProjectName.Data.Entities.UserRole", b =>
@@ -110,6 +155,13 @@ namespace ProjectName.Data.Migrations
                     b.HasIndex("userId");
 
                     b.ToTable("UserRole");
+
+                    b.HasData(
+                        new
+                        {
+                            roleId = 1,
+                            userId = 1
+                        });
                 });
 
             modelBuilder.Entity("ProjectName.Data.Entities.Product", b =>

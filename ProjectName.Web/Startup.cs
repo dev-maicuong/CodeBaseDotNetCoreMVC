@@ -46,6 +46,7 @@ namespace ProjectName.Web
 
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IFileService, FileService>();
+            services.AddTransient<IAccountService, AccountService>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
         }

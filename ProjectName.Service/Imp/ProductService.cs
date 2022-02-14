@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProjectName.Data.Infrastructure;
+using ProjectName.Data.Entities;
+using ProjectName.Model.RequestViewModels;
 
 namespace ProjectName.Service.Imp
 {

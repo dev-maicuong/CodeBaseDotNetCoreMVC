@@ -4,6 +4,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectName.Data.EF;
 using Microsoft.EntityFrameworkCore;
+using ProjectName.Model.RequestViewModels;
+using ProjectName.Data.Entities;
 
 namespace ProjectName.Service.Imp
 {

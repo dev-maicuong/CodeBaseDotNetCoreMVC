@@ -12,5 +12,6 @@ namespace ProjectName.Data.Entities
         [ForeignKey("userId")]
         public User user { set; get; }
         public int? userId { set; get; }
+        public string test { set; get; }
     }
 }

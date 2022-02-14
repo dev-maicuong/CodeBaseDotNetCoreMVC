@@ -21,8 +21,6 @@ namespace ProjectName.Data.Infrastructure
             _logger = logger.CreateLogger("logs");
             product = new ProductRepository(_context, _logger);
         }
-
-
         public async Task CompleteAsync()
         {
             await _context.SaveChangesAsync();

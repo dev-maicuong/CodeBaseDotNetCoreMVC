@@ -10,8 +10,8 @@ using ProjectName.Data.EF;
 namespace ProjectName.Data.Migrations
 {
     [DbContext(typeof(ProjectNameDbContext))]
-    [Migration("20220130051235_v1")]
-    partial class v1
+    [Migration("20220214092012_v0")]
+    partial class v0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,9 +21,42 @@ namespace ProjectName.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("ProjectName.Data.Entities.Product", b =>
+                {
+                    b.Property<int>("productId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("productName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("userId")
+                        .HasColumnType("int");
+
+                    b.HasKey("productId");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("Product");
+
+                    b.HasData(
+                        new
+                        {
+                            productId = 1,
+                            productName = "Sản phẩm 1"
+                        },
+                        new
+                        {
+                            productId = 2,
+                            productName = "Sản phẩm 2",
+                            userId = 1
+                        });
+                });
+
             modelBuilder.Entity("ProjectName.Data.Entities.Role", b =>
                 {
-                    b.Property<int>("idRole")
+                    b.Property<int>("roleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -31,17 +64,31 @@ namespace ProjectName.Data.Migrations
                     b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nameRole")
+                    b.Property<string>("roleName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("idRole");
+                    b.HasKey("roleId");
 
                     b.ToTable("Role");
+
+                    b.HasData(
+                        new
+                        {
+                            roleId = 1,
+                            description = "Mô tả vai trò 1",
+                            roleName = "Vai trò 1"
+                        },
+                        new
+                        {
+                            roleId = 2,
+                            description = "Mô tả vai trò 2",
+                            roleName = "Vai trò 2"
+                        });
                 });
 
             modelBuilder.Entity("ProjectName.Data.Entities.User", b =>
                 {
-                    b.Property<int>("idUser")
+                    b.Property<int>("userId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -52,59 +99,88 @@ namespace ProjectName.Data.Migrations
                     b.Property<string>("firstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("idUserDetail")
-                        .HasColumnType("int");
-
                     b.Property<string>("lastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("pass")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("idUser");
+                    b.HasKey("userId");
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            userId = 1,
+                            email = "hoangmaicuong99@gmail.com",
+                            firstName = "Cuong",
+                            lastName = "Hoang",
+                            pass = "123"
+                        });
                 });
 
             modelBuilder.Entity("ProjectName.Data.Entities.UserDetail", b =>
                 {
-                    b.Property<int>("idUserDetail")
+                    b.Property<int>("userDetailId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("createDay")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("idUser")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("updateDay")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("idUserDetail");
+                    b.HasKey("userDetailId");
 
                     b.ToTable("UserDetail");
+
+                    b.HasData(
+                        new
+                        {
+                            userDetailId = 1,
+                            createDay = new DateTime(2022, 5, 8, 14, 40, 52, 531, DateTimeKind.Unspecified),
+                            updateDay = new DateTime(2022, 5, 8, 14, 40, 52, 531, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("ProjectName.Data.Entities.UserRole", b =>
                 {
-                    b.Property<int>("idUser")
+                    b.Property<int>("roleId")
                         .HasColumnType("int");
 
-                    b.Property<int>("idRole")
+                    b.Property<int>("userId")
                         .HasColumnType("int");
 
-                    b.HasKey("idUser", "idRole");
+                    b.HasKey("roleId", "userId");
 
-                    b.HasIndex("idRole");
+                    b.HasIndex("userId");
 
                     b.ToTable("UserRole");
+
+                    b.HasData(
+                        new
+                        {
+                            roleId = 1,
+                            userId = 1
+                        });
+                });
+
+            modelBuilder.Entity("ProjectName.Data.Entities.Product", b =>
+                {
+                    b.HasOne("ProjectName.Data.Entities.User", "user")
+                        .WithMany("products")
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("ProjectName.Data.Entities.UserDetail", b =>
                 {
                     b.HasOne("ProjectName.Data.Entities.User", "user")
                         .WithOne("userDetail")
-                        .HasForeignKey("ProjectName.Data.Entities.UserDetail", "idUserDetail")
+                        .HasForeignKey("ProjectName.Data.Entities.UserDetail", "userDetailId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -115,13 +191,13 @@ namespace ProjectName.Data.Migrations
                 {
                     b.HasOne("ProjectName.Data.Entities.Role", "Role")
                         .WithMany()
-                        .HasForeignKey("idRole")
+                        .HasForeignKey("roleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ProjectName.Data.Entities.User", "user")
                         .WithMany("userRoles")
-                        .HasForeignKey("idUser")
+                        .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -132,6 +208,8 @@ namespace ProjectName.Data.Migrations
 
             modelBuilder.Entity("ProjectName.Data.Entities.User", b =>
                 {
+                    b.Navigation("products");
+
                     b.Navigation("userDetail");
 
                     b.Navigation("userRoles");
